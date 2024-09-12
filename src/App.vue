@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import CarTable from './components/CarTable.vue';
+import NavBar from '@/components/NavBar.vue'
 
 </script>
 
 <template>
-  <CarTable />
+  <NavBar />
+  <RouterView />
 </template>
