@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import CarStockPage from '@/pages/CarStockPage.vue'
 import AddCarPage from '@/pages/AddCarPage.vue'
-import RemoveCarPage from '@/pages/RemoveCarPage.vue'
 import FindCarPage from '@/pages/FindCarPage.vue'
 
 const router = createRouter({
@@ -16,11 +15,6 @@ const router = createRouter({
       path: '/adicionar',
       name: 'adicionar',
       component: AddCarPage
-    },
-    {
-      path: '/excluir',
-      name: 'excluir',
-      component: RemoveCarPage
     },
     {
       path: '/buscar',

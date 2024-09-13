@@ -7,7 +7,8 @@ const carros = [
     cor: 'Preto',
     ano: 2018,
     kilometragem: 45000,
-    estado: 'disponível'
+    estado: 'disponível',
+    editando: false
   },
   {
     placa: 'XYZ5678',
@@ -17,7 +18,8 @@ const carros = [
     cor: 'Branco',
     ano: 2019,
     kilometragem: 30000,
-    estado: 'em manutenção'
+    estado: 'em manutenção',
+    editando: false
   },
   {
     placa: 'JKL3456',
@@ -27,7 +29,8 @@ const carros = [
     cor: 'Cinza',
     ano: 2020,
     kilometragem: 25000,
-    estado: 'alugado'
+    estado: 'alugado',
+    editando: false
   },
   {
     placa: 'MNO7890',
@@ -37,7 +40,8 @@ const carros = [
     cor: 'Azul',
     ano: 2017,
     kilometragem: 60000,
-    estado: 'disponível'
+    estado: 'disponível',
+    editando: false
   },
   {
     placa: 'PQR2345',
@@ -47,7 +51,8 @@ const carros = [
     cor: 'Vermelho',
     ano: 2018,
     kilometragem: 40000,
-    estado: 'em manutenção'
+    estado: 'em manutenção',
+    editando: false
   },
   {
     placa: 'STU9876',
@@ -57,7 +62,8 @@ const carros = [
     cor: 'Prata',
     ano: 2021,
     kilometragem: 15000,
-    estado: 'disponível'
+    estado: 'disponível',
+    editando: false
   },
   {
     placa: 'VWX5432',
@@ -67,7 +73,8 @@ const carros = [
     cor: 'Preto',
     ano: 2020,
     kilometragem: 20000,
-    estado: 'alugado'
+    estado: 'alugado',
+    editando: false
   },
   {
     placa: 'YZA1239',
@@ -77,7 +84,8 @@ const carros = [
     cor: 'Azul',
     ano: 2019,
     kilometragem: 35000,
-    estado: 'disponível'
+    estado: 'disponível',
+    editando: false
   },
   {
     placa: 'BCD6781',
@@ -87,7 +95,8 @@ const carros = [
     cor: 'Vermelho',
     ano: 2017,
     kilometragem: 50000,
-    estado: 'em manutenção'
+    estado: 'em manutenção',
+    editando: false
   },
   {
     placa: 'EFG8765',
@@ -97,9 +106,9 @@ const carros = [
     cor: 'Branco',
     ano: 2021,
     kilometragem: 10000,
-    estado: 'disponível'
+    estado: 'disponível',
+    editando: false
   },
-  // Novos carros adicionados
   {
     placa: 'HIJ6543',
     modelo: 'Compass',
@@ -108,7 +117,8 @@ const carros = [
     cor: 'Cinza',
     ano: 2021,
     kilometragem: 12000,
-    estado: 'alugado'
+    estado: 'alugado',
+    editando: false
   },
   {
     placa: 'KLM0987',
@@ -118,7 +128,8 @@ const carros = [
     cor: 'Preto',
     ano: 2019,
     kilometragem: 40000,
-    estado: 'disponível'
+    estado: 'disponível',
+    editando: false
   },
   {
     placa: 'NOP6541',
@@ -128,7 +139,8 @@ const carros = [
     cor: 'Azul',
     ano: 2020,
     kilometragem: 20000,
-    estado: 'em manutenção'
+    estado: 'em manutenção',
+    editando: false
   },
   {
     placa: 'QRS4321',
@@ -138,7 +150,8 @@ const carros = [
     cor: 'Branco',
     ano: 2021,
     kilometragem: 15000,
-    estado: 'disponível'
+    estado: 'disponível',
+    editando: false
   },
   {
     placa: 'TUV3210',
@@ -148,7 +161,8 @@ const carros = [
     cor: 'Laranja',
     ano: 2018,
     kilometragem: 35000,
-    estado: 'alugado'
+    estado: 'alugado',
+    editando: false
   },
   {
     placa: 'WXY4567',
@@ -158,7 +172,8 @@ const carros = [
     cor: 'Prata',
     ano: 2020,
     kilometragem: 25000,
-    estado: 'em manutenção'
+    estado: 'em manutenção',
+    editando: false
   },
   {
     placa: 'ZAB5678',
@@ -168,7 +183,8 @@ const carros = [
     cor: 'Preto',
     ano: 2021,
     kilometragem: 10000,
-    estado: 'disponível'
+    estado: 'disponível',
+    editando: false
   },
   {
     placa: 'CDE8765',
@@ -178,7 +194,8 @@ const carros = [
     cor: 'Azul',
     ano: 2019,
     kilometragem: 45000,
-    estado: 'alugado'
+    estado: 'alugado',
+    editando: false
   },
   {
     placa: 'FGH2345',
@@ -188,8 +205,9 @@ const carros = [
     cor: 'Branco',
     ano: 2020,
     kilometragem: 30000,
-    estado: 'disponível'
+    estado: 'disponível',
+    editando: false
   }
 ]
 
-export default carros
+export default carros;

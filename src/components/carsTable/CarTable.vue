@@ -1,22 +1,15 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
 import type CarsTableProps from '@/components/carsTable/types'
 import EditCarModal from '@/components/editCarModal/EditCarModal.vue'
 
 const props = defineProps<CarsTableProps>()
 const carsToDisplay = props.carsToDisplay
-const showModal = ref(false)
-const carToEdit = ref()
-
-onMounted(() => {
-  const myModal = document.getElementById('myModal')
-})
 
 function editCar(placa) {
-  carToEdit.value = carsToDisplay.find((car) => car.placa === placa)
+  const carToEdit = carsToDisplay.find((car) => car.placa === placa)
   if (carToEdit) {
-    showModal.value = true
-    return carToEdit.value
+    carToEdit.editando = !carToEdit.editando
+    return carToEdit
   }
 }
 
@@ -37,13 +30,50 @@ function removeCar(placa) {
     >
       <div class="card-body cards">
         <img src="../../assets/img/icon.png" class="card-img-top" :alt="`${carro.modelo} foto`" />
-        <h5 class="list-group-item">{{ carro.modelo }}</h5>
+        <h5 v-if="!carro.editando" class="list-group-item">{{ carro.modelo }}</h5>
+        <div v-else class="form-group">
+          <label for="modelo">Modelo</label>
+          <input
+            type="text"
+            class="form-control"
+            id="modelo"
+            name="modelo"
+            :placeholder="carro.modelo"
+          />
+        </div>
       </div>
-      <ul class="list-group list-group-flush">
+      <ul v-if="!carro.editando" class="list-group list-group-flush">
         <li class="list-group-item">{{ carro.marca }}</li>
         <li class="list-group-item">{{ carro.ano }}</li>
         <li class="list-group-item">{{ carro.estado }}</li>
       </ul>
+      <form v-else>
+        <div class="form-group">
+          <label for="marca">Marca</label>
+          <input
+            type="text"
+            class="form-control"
+            id="marca"
+            name="marca"
+            :placeholder="carro.marca"
+          />
+        </div>
+        <div class="form-group">
+          <label for="ano">Ano</label>
+          <input type="number" class="form-control" id="ano" name="ano" :placeholder="carro.ano" />
+        </div>
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <input
+            type="text"
+            class="form-control"
+            id="estado"
+            name="estado"
+            :placeholder="carro.estado"
+          />
+        </div>
+      </form>
+
       <div class="card-body">
         <button
           type="button"
@@ -60,7 +90,7 @@ function removeCar(placa) {
       </div>
     </div>
   </div>
-  <EditCarModal v-if="showModal" :car-to-edit="carToEdit" />
+  <!--  <EditCarModal v-if="showModal" :car-to-edit="carToEdit" />-->
 </template>
 <style scoped lang="scss">
 .cars-container {
