@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type CarsTableProps from '@/components/carsTable/types'
-import EditCarModal from '@/components/editCarModal/EditCarModal.vue'
 
 const props = defineProps<CarsTableProps>()
 const carsToDisplay = props.carsToDisplay
@@ -90,7 +89,6 @@ function removeCar(placa) {
       </div>
     </div>
   </div>
-  <!--  <EditCarModal v-if="showModal" :car-to-edit="carToEdit" />-->
 </template>
 <style scoped lang="scss">
 .cars-container {
