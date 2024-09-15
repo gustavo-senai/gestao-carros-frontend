@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import cars from '@/util/cars'
+import { carStore } from '@/stores/cars'
 
+const store = carStore()
 const emit = defineEmits(['carFound'])
 
 const carToFind = ref('')
 
 function searchCar() {
-  const carFound = cars.find((car) => car.placa === carToFind.value)
+  const carFound = store.carros.find((car) => car.placa === carToFind.value)
   if (carFound) {
     emit('carFound', carFound)
   } else {

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import carros from '@/util/cars'
+import { carStore } from '@/stores/cars'
+
+const store = carStore()
 
 const newPlaca = ref('')
 const newModelo = ref('')
@@ -21,8 +23,9 @@ function handleSubmit() {
     estado: newEstado.value,
     editando: false
   }
-  carros.push(newCar)
+  store.carros.push(newCar)
   console.log('Novo carro:', newCar)
+  console.log(store.carros)
 }
 </script>
 
