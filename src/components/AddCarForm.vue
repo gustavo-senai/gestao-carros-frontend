@@ -11,6 +11,7 @@ const newMarca = ref('')
 const newCor = ref('')
 const newAno = ref()
 const newEstado = ref('')
+const newImage = ref('')
 
 function handleSubmit() {
   const newCar = {
@@ -21,6 +22,7 @@ function handleSubmit() {
     cor: newCor.value,
     ano: newAno.value,
     estado: newEstado.value,
+    imagem: newImage.value,
     editando: false
   }
   store.carros.push(newCar)
@@ -68,6 +70,11 @@ function handleSubmit() {
         <option value="em manutenção">Em manutenção</option>
         <option value="alugado">Alugado</option>
       </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="img" class="form-label">Ano</label>
+      <input v-model="image" type="number" class="form-control" id="ano" />
     </div>
 
     <button type="submit" class="btn btn-primary">Adicionar Carro</button>

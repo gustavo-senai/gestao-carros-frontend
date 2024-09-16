@@ -19,9 +19,6 @@
           <li class="nav-item">
             <a class="nav-link active" href="buscar">Buscar</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="excluir">Excluir</a>
-          </li>
         </ul>
       </div>
     </div>
