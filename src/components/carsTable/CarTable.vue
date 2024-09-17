@@ -14,37 +14,39 @@ const newCor = ref()
 const newAno = ref()
 const newEstado = ref()
 
-const editCar = (placa) => {
-  if (howManyAreEditing.value < 1) {
-    const carToEdit = carsToDisplay.find((car) => car.placa === placa)
-    howManyAreEditing.value++
-    if (carToEdit) {
-      carToEdit.editando = true
-      newPlaca.value = carToEdit.placa
-      newModelo.value = carToEdit.modelo
-      newPreco.value = carToEdit.preco
-      newMarca.value = carToEdit.marca
-      newCor.value = carToEdit.cor
-      newAno.value = carToEdit.ano
-      newEstado.value = carToEdit.estado
-    }
-    return carToEdit
-  }
-}
-
-function saveEdit(carToEdit) {
-  if (carToEdit) {
-    carToEdit.placa = newPlaca.value
-    carToEdit.modelo = newModelo.value
-    carToEdit.preco = newPreco.value
-    carToEdit.marca = newMarca.value
-    carToEdit.cor = newCor.value
-    carToEdit.ano = newAno.value
-    carToEdit.estado = newEstado.value
-    carToEdit.editando = false
+function saveEdit(car) {
+  console.log('inicio', car)
+  if (car) {
+    car.placa = newPlaca.value
+    car.modelo = newModelo.value
+    car.preco = newPreco.value
+    car.marca = newMarca.value
+    car.cor = newCor.value
+    car.ano = newAno.value
+    car.estado = newEstado.value
+    car.editando = false
   }
   howManyAreEditing.value = 0
-  console.log(carToEdit)
+  console.log('final', car)
+}
+
+const editCar = (placa) => {
+  const carToEdit = carsToDisplay.find((car) => car.placa === placa)
+  howManyAreEditing.value++
+  if (!carToEdit.editando && howManyAreEditing.value === 1) {
+    carToEdit.editando = true
+    newPlaca.value = carToEdit.placa
+    newModelo.value = carToEdit.modelo
+    newPreco.value = carToEdit.preco
+    newMarca.value = carToEdit.marca
+    newCor.value = carToEdit.cor
+    newAno.value = carToEdit.ano
+    newEstado.value = carToEdit.estado
+  } else if (carToEdit.editando) {
+    saveEdit(carToEdit)
+  }
+  console.log('primeira funcao', carToEdit)
+  return carToEdit
 }
 
 function removeCar(placa) {
@@ -106,7 +108,29 @@ function removeCar(placa) {
           />
         </div>
         <div class="form-group">
-          <label for="estado">Estado</label>
+          <label for="cor">Cor</label>
+          <input
+            type="text"
+            class="form-control"
+            id="cor"
+            name="cor"
+            v-model="newCor"
+            :placeholder="carro.cor"
+          />
+        </div>
+        <div class="form-group">
+          <label for="placa">Placa</label>
+          <input
+            type="text"
+            class="form-control"
+            id="placa"
+            name="placa"
+            v-model="newPlaca"
+            :placeholder="carro.placa"
+          />
+        </div>
+        <div class="form-group">
+          <label for="estado">Disponibilidade</label>
           <select class="form-control" id="estado" name="estado" v-model="newEstado">
             <option value="disponivel">Disponivel</option>
             <option value="em manutenção">Em manutenção</option>
@@ -116,11 +140,7 @@ function removeCar(placa) {
       </form>
 
       <div class="card-body">
-        <button
-          type="button"
-          class="btn btn-primary mx-1"
-          @click="carro.editando ? saveEdit(editCar(carro.placa)) : editCar(carro.placa)"
-        >
+        <button type="button" class="btn btn-primary mx-1" @click="editCar(carro.placa)">
           {{ carro.editando ? 'Salvar' : 'Editar' }}
         </button>
         <button type="button" class="btn btn-primary" @click="removeCar(carro.placa)">
