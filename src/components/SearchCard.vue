@@ -18,18 +18,33 @@ function searchCar() {
 </script>
 
 <template>
-  <div class="card text-center">
+  <div class="card text-center form-card">
     <div class="card-body">
-      <h5 class="card-title"></h5>
+      <h5 class="card-title">Buscar Carro</h5>
       <form class="d-flex" role="search" @submit.prevent="searchCar">
         <input
           v-model="carToFind"
           class="form-control me-2"
           type="search"
-          placeholder="Digite a placa do carro que deseja encontrar"
+          id="placa"
+          placeholder="Digite a placa"
         />
         <button class="btn btn-outline-primary" type="submit">Buscar</button>
       </form>
     </div>
   </div>
 </template>
+<style scoped lang="scss">
+.form-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 30%;
+  padding: 8px;
+  margin: 24px auto;
+  font-size: 24px;
+  font-weight: 600;
+  border-radius: 20px;
+}
+</style>

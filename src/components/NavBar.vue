@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary mb-4">
     <div class="container-fluid">
       <img
         src="../assets/img/icon.png"

@@ -1,6 +1,13 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
+import civic from '@/assets/img/carros/civic.jpeg';
+import corolla from '@/assets/img/carros/corolla.jpeg';
+import golf from '@/assets/img/carros/golf.jpeg';
+import focus from '@/assets/img/carros/focus.jpeg';
+import cruze from '@/assets/img/carros/cruze.jpeg';
+import sentra from '@/assets/img/carros/sentra.jpeg';
+import camry from '@/assets/img/carros/camry.jpeg';
 
-export const carStore = defineStore('counter', () => {
+export const carStore = defineStore('carStore', () => {
   const carros = [
     {
       placa: 'ABC1234',
@@ -11,7 +18,8 @@ export const carStore = defineStore('counter', () => {
       ano: 2018,
       kilometragem: 45000,
       estado: 'disponível',
-      editando: false
+      editando: false,
+      imagem: civic
     },
     {
       placa: 'XYZ5678',
@@ -22,7 +30,8 @@ export const carStore = defineStore('counter', () => {
       ano: 2019,
       kilometragem: 30000,
       estado: 'em manutenção',
-      editando: false
+      editando: false,
+      imagem: corolla
     },
     {
       placa: 'JKL3456',
@@ -33,7 +42,8 @@ export const carStore = defineStore('counter', () => {
       ano: 2020,
       kilometragem: 25000,
       estado: 'alugado',
-      editando: false
+      editando: false,
+      imagem: golf
     },
     {
       placa: 'MNO7890',
@@ -44,7 +54,8 @@ export const carStore = defineStore('counter', () => {
       ano: 2017,
       kilometragem: 60000,
       estado: 'disponível',
-      editando: false
+      editando: false,
+      imagem: focus
     },
     {
       placa: 'PQR2345',
@@ -55,7 +66,8 @@ export const carStore = defineStore('counter', () => {
       ano: 2018,
       kilometragem: 40000,
       estado: 'em manutenção',
-      editando: false
+      editando: false,
+      imagem: cruze
     },
     {
       placa: 'STU9876',
@@ -66,7 +78,8 @@ export const carStore = defineStore('counter', () => {
       ano: 2021,
       kilometragem: 15000,
       estado: 'disponível',
-      editando: false
+      editando: false,
+      imagem: sentra
     },
     {
       placa: 'VWX5432',
@@ -77,18 +90,20 @@ export const carStore = defineStore('counter', () => {
       ano: 2020,
       kilometragem: 20000,
       estado: 'alugado',
-      editando: false
+      editando: false,
+      imagem: camry
     }
-  ]
+  ];
 
-  function isNewCar(placa: string) {
-    return carros.some((car) => car.placa === placa)
+  function isNewCar(placa) {
+    return carros.some((car) => car.placa === placa);
   }
 
   function addCar(car) {
-    if (isNewCar(car.placa)) {
-      carros.push(car)
+    if (!isNewCar(car.placa)) {
+      carros.push(car);
     }
   }
-  return { carros, isNewCar, addCar }
-})
+
+  return { carros, isNewCar, addCar };
+});

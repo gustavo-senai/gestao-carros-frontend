@@ -1,15 +1,45 @@
 <script setup lang="ts">
 import type CarsTableProps from '@/components/carsTable/types'
+import { ref } from 'vue'
 
 const props = defineProps<CarsTableProps>()
 const carsToDisplay = props.carsToDisplay
 
-function editCar(placa) {
+const newPlaca = ref()
+const newModelo = ref()
+const newPreco = ref()
+const newMarca = ref()
+const newCor = ref()
+const newAno = ref()
+const newEstado = ref()
+
+const editCar = (placa) => {
   const carToEdit = carsToDisplay.find((car) => car.placa === placa)
   if (carToEdit) {
-    carToEdit.editando = !carToEdit.editando
-    return carToEdit
+    carToEdit.editando = true
+    newPlaca.value = carToEdit.placa
+    newModelo.value = carToEdit.modelo
+    newPreco.value = carToEdit.preco
+    newMarca.value = carToEdit.marca
+    newCor.value = carToEdit.cor
+    newAno.value = carToEdit.ano
+    newEstado.value = carToEdit.estado
   }
+  return carToEdit
+}
+
+function saveEdit(carToEdit) {
+  if (carToEdit) {
+    carToEdit.placa = newPlaca.value
+    carToEdit.modelo = newModelo.value
+    carToEdit.preco = newPreco.value
+    carToEdit.marca = newMarca.value
+    carToEdit.cor = newCor.value
+    carToEdit.ano = newAno.value
+    carToEdit.estado = newEstado.value
+    carToEdit.editando = false
+  }
+  console.log(carToEdit)
 }
 
 function removeCar(placa) {
@@ -28,7 +58,7 @@ function removeCar(placa) {
       :key="index"
     >
       <div class="card-body cards">
-        <img src="../../assets/img/icon.png" class="card-img-top" :alt="`${carro.modelo} foto`" />
+        <img :src="carro.imagem" class="card-img-top mb-2" :alt="`${carro.modelo} foto`" />
         <h5 v-if="!carro.editando" class="list-group-item">{{ carro.modelo }}</h5>
         <div v-else class="form-group">
           <label for="modelo">Modelo</label>
@@ -37,6 +67,7 @@ function removeCar(placa) {
             class="form-control"
             id="modelo"
             name="modelo"
+            v-model="newModelo"
             :placeholder="carro.modelo"
           />
         </div>
@@ -52,6 +83,7 @@ function removeCar(placa) {
           <input
             type="text"
             class="form-control"
+            v-model="newMarca"
             id="marca"
             name="marca"
             :placeholder="carro.marca"
@@ -59,17 +91,22 @@ function removeCar(placa) {
         </div>
         <div class="form-group">
           <label for="ano">Ano</label>
-          <input type="number" class="form-control" id="ano" name="ano" :placeholder="carro.ano" />
+          <input
+            type="number"
+            class="form-control"
+            id="ano"
+            name="ano"
+            v-model="newAno"
+            :placeholder="carro.ano"
+          />
         </div>
         <div class="form-group">
           <label for="estado">Estado</label>
-          <input
-            type="text"
-            class="form-control"
-            id="estado"
-            name="estado"
-            :placeholder="carro.estado"
-          />
+          <select class="form-control" id="estado" name="estado" v-model="newEstado">
+            <option value="disponivel">Disponivel</option>
+            <option value="em manutenção">Em manutenção</option>
+            <option value="alugado">Alugado</option>
+          </select>
         </div>
       </form>
 
@@ -77,11 +114,9 @@ function removeCar(placa) {
         <button
           type="button"
           class="btn btn-primary mx-1"
-          data-bs-toggle="modal"
-          data-bs-target="#myModal"
-          @click="editCar(carro.placa)"
+          @click="carro.editando ? saveEdit(editCar(carro.placa)) : editCar(carro.placa)"
         >
-          Editar
+          {{ carro.editando ? 'Salvar' : 'Editar' }}
         </button>
         <button type="button" class="btn btn-primary" @click="removeCar(carro.placa)">
           Remover
@@ -105,5 +140,9 @@ function removeCar(placa) {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+
+  img {
+    height: 150px;
+  }
 }
 </style>
