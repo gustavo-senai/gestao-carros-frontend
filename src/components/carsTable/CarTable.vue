@@ -4,6 +4,7 @@ import { ref } from 'vue'
 
 const props = defineProps<CarsTableProps>()
 const carsToDisplay = props.carsToDisplay
+const howManyAreEditing = ref(0)
 
 const newPlaca = ref()
 const newModelo = ref()
@@ -14,18 +15,21 @@ const newAno = ref()
 const newEstado = ref()
 
 const editCar = (placa) => {
-  const carToEdit = carsToDisplay.find((car) => car.placa === placa)
-  if (carToEdit) {
-    carToEdit.editando = true
-    newPlaca.value = carToEdit.placa
-    newModelo.value = carToEdit.modelo
-    newPreco.value = carToEdit.preco
-    newMarca.value = carToEdit.marca
-    newCor.value = carToEdit.cor
-    newAno.value = carToEdit.ano
-    newEstado.value = carToEdit.estado
+  if (howManyAreEditing.value < 1) {
+    const carToEdit = carsToDisplay.find((car) => car.placa === placa)
+    howManyAreEditing.value++
+    if (carToEdit) {
+      carToEdit.editando = true
+      newPlaca.value = carToEdit.placa
+      newModelo.value = carToEdit.modelo
+      newPreco.value = carToEdit.preco
+      newMarca.value = carToEdit.marca
+      newCor.value = carToEdit.cor
+      newAno.value = carToEdit.ano
+      newEstado.value = carToEdit.estado
+    }
+    return carToEdit
   }
-  return carToEdit
 }
 
 function saveEdit(carToEdit) {
@@ -39,6 +43,7 @@ function saveEdit(carToEdit) {
     carToEdit.estado = newEstado.value
     carToEdit.editando = false
   }
+  howManyAreEditing.value = 0
   console.log(carToEdit)
 }
 
