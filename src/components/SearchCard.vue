@@ -15,22 +15,31 @@ function searchCar() {
     alert('Não há nenhum carro com esta placa')
   }
 }
+
+const rules = {
+  placa: 'required|length:7'
+}
 </script>
 
 <template>
   <div class="card text-center form-card">
     <div class="card-body">
       <h5 class="card-title">Buscar Carro</h5>
-      <form class="d-flex" role="search" @submit.prevent="searchCar">
-        <input
-          v-model="carToFind"
-          class="form-control me-2"
-          type="search"
-          id="placa"
-          placeholder="Digite a placa"
-        />
-        <button class="btn btn-outline-primary" type="submit">Buscar</button>
-      </form>
+      <VeeForm role="search" :validation-schema="rules" @submit="searchCar">
+        <VeeField name="placa" :bails="false" v-slot="{ field, errors }">
+          <input
+            v-model="carToFind"
+            class="form-control"
+            id="placa"
+            v-bind="field"
+            placeholder="Digite a placa"
+          />
+          <div class="error" v-for="(error, index) in errors" :key="index">
+            {{ error }}
+          </div>
+        </VeeField>
+        <button class="btn btn-outline-light mt-3" type="submit">Buscar</button>
+      </VeeForm>
     </div>
   </div>
 </template>
@@ -46,5 +55,13 @@ function searchCar() {
   font-size: 24px;
   font-weight: 600;
   border-radius: 20px;
+  background-color: #1D3557;
+  color: #FFFFFF;
+}
+
+.error {
+  font-size: 16px;
+  font-weight: 400;
+  color: red;
 }
 </style>

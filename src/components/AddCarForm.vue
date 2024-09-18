@@ -11,7 +11,6 @@ const newPreco = ref()
 const newMarca = ref('')
 const newCor = ref('')
 const newAno = ref()
-const newEstado = ref('')
 const fileData = ref(null)
 const fileName = ref('')
 
@@ -27,6 +26,50 @@ const handleFileUpload = (event) => {
     reader.readAsDataURL(file)
   }
 }
+const fields = [
+  {
+    for: 'inputPlaca',
+    type: 'text',
+    name: 'placa',
+    title: 'Placa',
+    model: newPlaca
+  },
+  {
+    for: 'inputModelo',
+    type: 'text',
+    name: 'modelo',
+    title: 'Modelo',
+    model: newModelo
+  },
+  {
+    for: 'inputMarca',
+    type: 'text',
+    name: 'marca',
+    title: 'Marca',
+    model: newMarca
+  },
+  {
+    for: 'inputAno',
+    type: 'number',
+    name: 'ano',
+    title: 'Ano',
+    model: newAno
+  },
+  {
+    for: 'inputCor',
+    type: 'text',
+    name: 'cor',
+    title: 'Cor',
+    model: newCor
+  },
+  {
+    for: 'inputPreco',
+    type: 'number',
+    name: 'preco',
+    title: 'Preço',
+    model: newPreco
+  },
+]
 
 function handleSubmit() {
   const newCar = {
@@ -36,63 +79,50 @@ function handleSubmit() {
     marca: newMarca.value,
     cor: newCor.value,
     ano: newAno.value,
-    estado: newEstado.value,
+    estado: 'disponível',
     editando: false,
     imagem: fileData.value
   }
+  console.log(newCar)
   store.carros.push(newCar)
   emit('upload', newCar)
+}
+
+const rules = {
+  placa: 'required|length:7',
+  modelo: 'required',
+  preco: 'required|min_value:1000',
+  marca: 'required',
+  cor: 'required|alpha',
+  ano: 'required|min_value:1900',
 }
 </script>
 
 <template>
   <div class="card text-center form-card">
-    <form @submit.prevent="handleSubmit">
-      <div class="mb-3">
-        <label for="placa" class="form-label">Placa</label>
-        <input v-model="newPlaca" type="text" class="form-control" id="placa" />
+    <VeeForm :validation-schema="rules" @submit="handleSubmit">
+      <div class="mb-3" v-for="field in fields" :key="field.name">
+        <label :for="field.for" class="form-label">{{ field.title }}</label>
+        <VeeField :name="field.name" :bails="false" v-slot="{ field, errors }">
+          <input
+            :id="field.for"
+            :type="field.type"
+            v-model="field.model"
+            class="form-control"
+            v-bind="field"
+          />
+          <div class="error" v-for="(error, index) in errors" :key="index">
+            {{ error }}
+          </div>
+        </VeeField>
       </div>
-
       <div class="mb-3">
-        <label for="modelo" class="form-label">Modelo</label>
-        <input v-model="newModelo" type="text" class="form-control" id="modelo" />
+        <label for="imagem" class="form-label">Imagem</label>
+        <input type="file" id="imagem" class="form-control" @change="handleFileUpload" />
+        <p v-if="fileData" class="my-2">Arquivo selecionado: {{ fileName }}</p>
+        <button type="submit" class="btn btn-primary mt-3">Adicionar Carro</button>
       </div>
-
-      <div class="mb-3">
-        <label for="preco" class="form-label">Preço</label>
-        <input v-model="newPreco" type="number" class="form-control" id="preco" />
-      </div>
-
-      <div class="mb-3">
-        <label for="marca" class="form-label">Marca</label>
-        <input v-model="newMarca" type="text" class="form-control" id="marca" />
-      </div>
-
-      <div class="mb-3">
-        <label for="cor" class="form-label">Cor</label>
-        <input v-model="newCor" type="text" class="form-control" id="cor" />
-      </div>
-
-      <div class="mb-3">
-        <label for="ano" class="form-label">Ano</label>
-        <input v-model="newAno" type="number" class="form-control" id="ano" />
-      </div>
-
-      <div class="mb-3">
-        <label for="estado" class="form-label">Estado</label>
-        <select v-model="newEstado" class="form-select" id="estado">
-          <option value="disponível">Disponível</option>
-          <option value="em manutenção">Em manutenção</option>
-          <option value="alugado">Alugado</option>
-        </select>
-      </div>
-
-      <div class="mb-3">
-        <input type="file" @change="handleFileUpload" />
-        <p v-if="fileData">Arquivo selecionado: {{ fileName }}</p>
-      </div>
-      <button type="submit" class="btn btn-primary">Adicionar Carro</button>
-    </form>
+    </VeeForm>
   </div>
 </template>
 <style scoped lang="scss">
@@ -106,5 +136,12 @@ function handleSubmit() {
   font-size: 24px;
   font-weight: 600;
   border-radius: 20px;
+  background-color: #1D3557;
+  color: #FFFFFF;
+}
+.error {
+  font-size: 16px;
+  font-weight: 400;
+  color: red;
 }
 </style>

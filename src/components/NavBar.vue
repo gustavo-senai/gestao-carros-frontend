@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary mb-4">
+  <nav class="navbar navbar-expand-lg mb-4 main-nav" data-bs-theme="dark">
     <div class="container-fluid">
       <img
         src="../assets/img/icon.png"
@@ -24,3 +24,8 @@
     </div>
   </nav>
 </template>
+<style scoped lang="scss">
+.main-nav {
+  background-color: #1D3557;
+}
+</style>
