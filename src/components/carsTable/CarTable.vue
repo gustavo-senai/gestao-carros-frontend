@@ -132,9 +132,9 @@ function removeCar(placa) {
         <div class="form-group">
           <label for="estado">Disponibilidade</label>
           <select class="form-control" id="estado" name="estado" v-model="newEstado">
-            <option value="disponivel">Disponivel</option>
-            <option value="em manutenção">Em manutenção</option>
-            <option value="alugado">Alugado</option>
+            <option value="Disponivel">Disponivel</option>
+            <option value="Em manutenção">Em manutenção</option>
+            <option value="Alugado">Alugado</option>
           </select>
         </div>
       </form>

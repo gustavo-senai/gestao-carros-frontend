@@ -17,7 +17,7 @@ export const carStore = defineStore('carStore', () => {
       cor: 'Preto',
       ano: 2018,
       kilometragem: 45000,
-      estado: 'disponível',
+      estado: 'Disponível',
       editando: false,
       imagem: civic
     },
@@ -29,7 +29,7 @@ export const carStore = defineStore('carStore', () => {
       cor: 'Branco',
       ano: 2019,
       kilometragem: 30000,
-      estado: 'em manutenção',
+      estado: 'Em manutenção',
       editando: false,
       imagem: corolla
     },
@@ -41,7 +41,7 @@ export const carStore = defineStore('carStore', () => {
       cor: 'Cinza',
       ano: 2020,
       kilometragem: 25000,
-      estado: 'alugado',
+      estado: 'Alugado',
       editando: false,
       imagem: golf
     },
@@ -53,7 +53,7 @@ export const carStore = defineStore('carStore', () => {
       cor: 'Azul',
       ano: 2017,
       kilometragem: 60000,
-      estado: 'disponível',
+      estado: 'Disponível',
       editando: false,
       imagem: focus
     },
@@ -65,7 +65,7 @@ export const carStore = defineStore('carStore', () => {
       cor: 'Vermelho',
       ano: 2018,
       kilometragem: 40000,
-      estado: 'em manutenção',
+      estado: 'Em manutenção',
       editando: false,
       imagem: cruze
     },
@@ -77,7 +77,7 @@ export const carStore = defineStore('carStore', () => {
       cor: 'Prata',
       ano: 2021,
       kilometragem: 15000,
-      estado: 'disponível',
+      estado: 'Disponível',
       editando: false,
       imagem: sentra
     },
@@ -89,7 +89,7 @@ export const carStore = defineStore('carStore', () => {
       cor: 'Preto',
       ano: 2020,
       kilometragem: 20000,
-      estado: 'alugado',
+      estado: 'Alugado',
       editando: false,
       imagem: camry
     }
