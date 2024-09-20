@@ -26,7 +26,7 @@ const handleFileUpload = (event) => {
     reader.readAsDataURL(file)
   }
 }
-const fields = [
+const inputs = [
   {
     for: 'inputPlaca',
     type: 'text',
@@ -83,7 +83,6 @@ function handleSubmit() {
     editando: false,
     imagem: fileData.value
   }
-  console.log(newCar)
   store.carros.push(newCar)
   emit('upload', newCar)
 }
@@ -101,13 +100,13 @@ const rules = {
 <template>
   <div class="card text-center form-card">
     <VeeForm :validation-schema="rules" @submit="handleSubmit">
-      <div class="mb-3" v-for="field in fields" :key="field.name">
-        <label :for="field.for" class="form-label">{{ field.title }}</label>
-        <VeeField :name="field.name" :bails="false" v-slot="{ field, errors }">
+      <div class="mb-3" v-for="input in inputs" :key="input.name">
+        <label :for="input.for" class="form-label">{{ field.title }}</label>
+        <VeeField :name="input.name" :bails="false" v-slot="{ field, errors }">
           <input
-            :id="field.for"
-            :type="field.type"
-            v-model="field.model"
+            :id="input.for"
+            :type="input.type"
+            v-model="input.model"
             class="form-control"
             v-bind="field"
           />
