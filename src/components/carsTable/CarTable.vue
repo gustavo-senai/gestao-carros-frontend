@@ -15,7 +15,6 @@ const newAno = ref()
 const newEstado = ref()
 
 function saveEdit(car) {
-  console.log('inicio', car)
   if (car) {
     car.placa = newPlaca.value
     car.modelo = newModelo.value
@@ -27,7 +26,6 @@ function saveEdit(car) {
     car.editando = false
   }
   howManyAreEditing.value = 0
-  console.log('final', car)
 }
 
 const editCar = (placa) => {
@@ -45,7 +43,6 @@ const editCar = (placa) => {
   } else if (carToEdit.editando) {
     saveEdit(carToEdit)
   }
-  console.log('primeira funcao', carToEdit)
   return carToEdit
 }
 

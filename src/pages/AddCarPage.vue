@@ -9,6 +9,7 @@ const newCar = ref([])
 const store = carStore()
 
 function displayNewCar(value) {
+  console.log(value)
   showCar.value = true
   newCar.value.push(value)
   store.carros.push(value)
